@@ -11,13 +11,15 @@ namespace PrismUnityApp1
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("PrismMasterDetailPage");
+            NavigationService.NavigateAsync("PrismMasterDetailPage/PrismNavigationPage/MainPage");
         }
 
         protected override void RegisterTypes()
         {
             Container.RegisterTypeForNavigation<MainPage>();
             Container.RegisterTypeForNavigation<PrismMasterDetailPage>();
+            Container.RegisterTypeForNavigation<PrismNavigationPage>();
+            Container.RegisterTypeForNavigation<SecondPage>();
         }
     }
 }

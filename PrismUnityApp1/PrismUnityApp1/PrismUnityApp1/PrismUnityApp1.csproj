@@ -37,8 +37,16 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\PrismNavigationPageViewModel.cs" />
+    <Compile Include="ViewModels\SecondPageViewModel.cs" />
     <Compile Include="Views\PrismMasterDetailPage.xaml.cs">
       <DependentUpon>PrismMasterDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrismNavigationPage.xaml.cs">
+      <DependentUpon>PrismNavigationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SecondPage.xaml.cs">
+      <DependentUpon>SecondPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +108,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\PrismMasterDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PrismNavigationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SecondPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
