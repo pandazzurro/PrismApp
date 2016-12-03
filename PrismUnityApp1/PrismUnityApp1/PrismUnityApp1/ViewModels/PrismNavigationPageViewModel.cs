@@ -9,9 +9,10 @@ namespace PrismUnityApp1.ViewModels
 {
     public class PrismNavigationPageViewModel : BindableBase, INavigationAware
     {
-        public PrismNavigationPageViewModel()
+        private INavigationService _navigationService;
+        public PrismNavigationPageViewModel(INavigationService navigationService)
         {
-
+            _navigationService = navigationService;
         }
 
         public void OnNavigatedFrom(NavigationParameters parameters)
