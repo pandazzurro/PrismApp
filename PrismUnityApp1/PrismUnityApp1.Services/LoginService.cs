@@ -33,6 +33,7 @@ namespace PrismUnityApp1.Services
                 //var at = new AccessToken { access_token = "8c67e507e84309aafccd2523505d3095" };
                 JObject accessToken = new JObject();
                 accessToken["access_token"] = "8c67e507e84309aafccd2523505d3095";
+                
                 return await _client.LoginAsync(MobileServiceAuthenticationProvider.Facebook, accessToken);
             }
             catch(Exception ex)

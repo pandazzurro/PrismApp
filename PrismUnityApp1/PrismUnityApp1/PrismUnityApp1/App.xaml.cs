@@ -14,9 +14,9 @@ namespace PrismUnityApp1
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("PrismMasterDetailPage/PrismNavigationPage/MainPage");
+            //NavigationService.NavigateAsync("PrismMasterDetailPage/PrismNavigationPage/MainPage");
             //NavigationService.NavigateAsync("LoginPage");
-            //NavigationService.NavigateAsync("TodoItemListPage");
+            NavigationService.NavigateAsync("TodoItemListPage");
         }
 
         protected override void RegisterTypes()

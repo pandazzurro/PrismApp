@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,11 @@ namespace PrismUnityApp1.Services
             _client = client;
         }
 
-        public async Task<List<JToken>> GetTodos()
+        public async Task<List<TodoItem>> GetTodos()
         {
             try
             {
-                // Verificare se possibile utilizzare :
-                //var items = await _client.GetTable<TodoItem>().ReadAsync();
-                var items = await _client.GetTable("TodoItem").ReadAsync("");
+                var items = await _client.GetTable<TodoItem>().ReadAsync();
                 return items.ToList();
             }
             catch(Exception ex)
@@ -37,6 +36,7 @@ namespace PrismUnityApp1.Services
 
     public class TodoItem 
     {
+        [JsonProperty("id")]
         public string Id { get; set; }
         public string Text { get; set; }
 
@@ -45,6 +45,6 @@ namespace PrismUnityApp1.Services
 
     public interface ITodoItemService
     {
-        Task<List<JToken>> GetTodos();
+        Task<List<TodoItem>> GetTodos();
     }
 }
