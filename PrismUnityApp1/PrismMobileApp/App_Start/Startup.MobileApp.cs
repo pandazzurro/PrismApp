@@ -9,6 +9,9 @@ using Microsoft.Azure.Mobile.Server.Config;
 using PrismMobileApp.DataObjects;
 using PrismMobileApp.Models;
 using Owin;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace PrismMobileApp
 {
@@ -16,7 +19,17 @@ namespace PrismMobileApp
     {
         public static void ConfigureMobileApp(IAppBuilder app)
         {
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings()
+            {
+                Converters = { new StringEnumConverter { CamelCaseText = true }, },
+                ContractResolver = new CamelCasePropertyNamesContractResolver { IgnoreSerializableAttribute = true },
+                DefaultValueHandling = DefaultValueHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore,
+                Formatting = Formatting.Indented
+            };
+
             HttpConfiguration config = new HttpConfiguration();
+            config.Formatters.JsonFormatter.SerializerSettings = JsonConvert.DefaultSettings();
 
             new MobileAppConfiguration()
                 .UseDefaultConfiguration()

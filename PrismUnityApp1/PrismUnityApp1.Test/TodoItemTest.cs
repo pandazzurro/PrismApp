@@ -13,7 +13,7 @@ namespace PrismUnityApp1.Test
         {
             var mobileClient = new MobileServiceClient("http://prismmobileapp.azurewebsites.net/");
             var service = new TodoItemService(mobileClient);
-            var result = service.GetTodos();
+            var result = service.GetTodos(0,10);
         }
     }
 }

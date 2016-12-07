@@ -4,5 +4,28 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismUnityApp1.Views.TodoItemListPage">
-  
+    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+        <Entry Text="{Binding TodoName, Mode=TwoWay}"></Entry>
+        <Button Command="{Binding InsertCommand}" Text="Aggiungi Todo"></Button>
+        <ListView SelectedItem="{Binding SelectedItem, Mode=TwoWay}" ItemsSource="{Binding Todos, Mode=TwoWay}" BackgroundColor="Aqua">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid BackgroundColor="Blue">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextCell Grid.Column="0" Grid.Row="0" Text="{Binding Text}"></TextCell>
+                        <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                            <Button Text="Update" Command="{Binding UpdateCommand}"></Button>
+                            <Button Text="Delete" Command="{Binding DeleteCommand}"></Button>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>    
 </ContentPage>
