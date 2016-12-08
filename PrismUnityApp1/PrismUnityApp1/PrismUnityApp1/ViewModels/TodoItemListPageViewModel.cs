@@ -29,7 +29,7 @@ namespace PrismUnityApp1.ViewModels
             Task.Run(async () =>
             {
                 Todos = new ObservableCollection<TodoItem>(await _todoService.GetTodos(0, 10));
-            });
+            }).Wait();
 
             UpdateCommand = new DelegateCommand(UpdateAsync);
             DeleteCommand = new DelegateCommand(DeleteAsync);

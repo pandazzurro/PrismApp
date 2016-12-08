@@ -21,8 +21,11 @@ namespace PrismUnityApp1.Droid
 
             base.OnCreate(bundle);
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+            global::Xamarin.Forms.Forms.Init(this, bundle);            
             LoadApplication(new App(new AndroidInitializer()));
+
+            var x = typeof(Xamarin.Forms.Themes.DarkThemeResources);
+            x = typeof(Xamarin.Forms.Themes.Android.UnderlineEffect);
         }
     }
 

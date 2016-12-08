@@ -2,6 +2,9 @@
 <prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+                        xmlns:dark="clr-namespace:Xamarin.Forms.Themes;assembly=Xamarin.Forms.Theme.Dark"
                         x:Class="PrismUnityApp1.App">
-
+  <Application.Resources>
+    <ResourceDictionary MergedWith="dark:DarkThemeResources" />
+  </Application.Resources>
 </prism:PrismApplication>

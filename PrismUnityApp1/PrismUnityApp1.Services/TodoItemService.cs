@@ -1,5 +1,6 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -12,21 +13,30 @@ namespace PrismUnityApp1.Services
     public class TodoItemService : ITodoItemService
     {
         public IMobileServiceClient _client;
+        private IMobileServiceTable<TodoItem> _table;
         public TodoItemService(IMobileServiceClient client)
         {
             _client = client;
+            _table = _client.GetTable<TodoItem>();
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings()
+            {
+                Converters = { new StringEnumConverter { CamelCaseText = true }, },
+                DefaultValueHandling = DefaultValueHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore,
+                Formatting = Formatting.Indented
+            };
         }
 
         public async Task DeleteTodo(TodoItem item)
         {
-            await _client.GetTable<TodoItem>().DeleteAsync(item);
+            await _table.DeleteAsync(item);
         }
 
         public async Task<List<TodoItem>> GetTodos(int skip, int take)
         {
             try
             {
-                return await _client.GetTable<TodoItem>()
+                return await _table
                     .Skip(skip)
                     .Take(take)
                     .ToListAsync();
@@ -43,7 +53,7 @@ namespace PrismUnityApp1.Services
         {
             try
             {
-                await _client.GetTable<TodoItem>().InsertAsync(item);
+                await _table.InsertAsync(item);
             }
             catch(Exception ex)
             {
@@ -53,17 +63,14 @@ namespace PrismUnityApp1.Services
 
         public async Task UpdateTodo(TodoItem item)
         {
-            await _client.GetTable<TodoItem>().UpdateAsync(item);
+            await _table.UpdateAsync(item);
         }
     }
 
     public class TodoItem 
     {
-        [JsonProperty("id")]
         public string Id { get; set; }
-        [JsonProperty("text")]
         public string Text { get; set; }
-        [JsonProperty("complete")]
         public bool Complete { get; set; }
     }
 
