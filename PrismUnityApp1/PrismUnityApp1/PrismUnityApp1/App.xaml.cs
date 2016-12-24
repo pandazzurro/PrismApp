@@ -15,8 +15,8 @@ namespace PrismUnityApp1
             InitializeComponent();
 
             //NavigationService.NavigateAsync("PrismMasterDetailPage/PrismNavigationPage/MainPage");
-            //NavigationService.NavigateAsync("LoginPage");
-            NavigationService.NavigateAsync("TodoItemListPage");
+            NavigationService.NavigateAsync("LoginPage");
+            //NavigationService.NavigateAsync("TodoItemListPage");
         }
 
         protected override void RegisterTypes()
@@ -30,7 +30,7 @@ namespace PrismUnityApp1
 
             var mobileClient = new MobileServiceClient("http://prismmobileapp.azurewebsites.net/");
             Container.RegisterInstance<IMobileServiceClient>(mobileClient);
-            Container.RegisterType<ILoginService, LoginService>();
+            Container.RegisterType<IUserService, UserService>();
             Container.RegisterType<ITodoItemService, TodoItemService>();
         }
     }
