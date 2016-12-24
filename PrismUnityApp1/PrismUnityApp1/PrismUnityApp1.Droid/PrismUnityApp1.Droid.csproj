@@ -176,6 +176,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\LoginService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -200,6 +201,10 @@
     <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PrismUnityApp1.Entity\PrismUnityApp1.Entity.csproj">
+      <Project>{989134D4-869B-4A34-B4D9-F14F0B415244}</Project>
+      <Name>PrismUnityApp1.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\PrismUnityApp1.Services\PrismUnityApp1.Services.csproj">
       <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
       <Name>PrismUnityApp1.Services</Name>

@@ -11,6 +11,8 @@ using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Authentication.AppService;
 using Microsoft.Azure.Mobile.Server.Config;
 using Facebook;
+using PrismUnityApp1.Entity;
+using Newtonsoft.Json;
 
 namespace PrismMobileApp.Controllers
 {
@@ -19,7 +21,7 @@ namespace PrismMobileApp.Controllers
     {
         // GET api/Identity
         [Route("api/Identity/{provider}")]
-        public async Task<string> Get(string provider)
+        public async Task<object> Get(string provider)
         {
             string userData = string.Empty;
             
@@ -45,11 +47,10 @@ namespace PrismMobileApp.Controllers
             return userData;
         }
 
-        private async Task<string> FacebookDataAsync(FacebookCredentials credentials)
+        private async Task<FacebookUser> FacebookDataAsync(FacebookCredentials credentials)
         {
             // Create a query string with the Facebook access token.
-            var fbRequestUrl = "https://graph.facebook.com/me?fields=birthday,email,name&access_token=" + credentials.AccessToken;
-
+            var fbRequestUrl = $"https://graph.facebook.com/me?fields=birthday,email,name&access_token={credentials.AccessToken}";
             // Create an HttpClient request.
             var client = new HttpClient();
 
@@ -58,7 +59,15 @@ namespace PrismMobileApp.Controllers
             resp.EnsureSuccessStatusCode();
 
             // Do something here with the Facebook user information.
-            var fbInfo = await resp.Content.ReadAsStringAsync();
+            var fbInfoString = await resp.Content.ReadAsStringAsync();
+            var fbInfo = JsonConvert.DeserializeObject<FacebookUser>(fbInfoString);
+
+            // Carico l'immagine dell'utente
+            var fbRequestImageUrl = $"https://graph.facebook.com/me/picture?access_token={credentials.AccessToken}";
+            var respImage = await client.GetAsync(fbRequestImageUrl);
+            respImage.EnsureSuccessStatusCode();
+                        
+            fbInfo.profile_image = await respImage.Content.ReadAsByteArrayAsync();
             return fbInfo;
         }
     }

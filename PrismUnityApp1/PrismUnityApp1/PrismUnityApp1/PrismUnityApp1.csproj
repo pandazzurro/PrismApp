@@ -41,6 +41,7 @@
     <Compile Include="ViewModels\PrismNavigationPageViewModel.cs" />
     <Compile Include="ViewModels\SecondPageViewModel.cs" />
     <Compile Include="ViewModels\TodoItemListPageViewModel.cs" />
+    <Compile Include="ViewModels\UserPageViewModel.cs" />
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -55,6 +56,9 @@
     </Compile>
     <Compile Include="Views\TodoItemListPage.xaml.cs">
       <DependentUpon>TodoItemListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +173,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PrismUnityApp1.Entity\PrismUnityApp1.Entity.csproj">
+      <Project>{989134D4-869B-4A34-B4D9-F14F0B415244}</Project>
+      <Name>PrismUnityApp1.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\PrismUnityApp1.Services\PrismUnityApp1.Services.csproj">
       <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
       <Name>PrismUnityApp1.Services</Name>
@@ -182,6 +190,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\TodoItemListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\UserPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

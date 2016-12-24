@@ -217,6 +217,12 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\PrismMobileApp - Web Deploy.pubxml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrismUnityApp1.Entity\PrismUnityApp1.Entity.csproj">
+      <Project>{989134d4-869b-4a34-b4d9-f14f0b415244}</Project>
+      <Name>PrismUnityApp1.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
