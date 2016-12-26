@@ -12,7 +12,9 @@ namespace PrismUnityApp1.Services
 {
     public interface ILoginService
     {
-        Task<object> LoginFacebookAsync();        
+        Task<object> LoginFacebookAsync();
+        Task<object> LoginGoogleAsync();
+        Task LogoutAsync();     
     }
 
     public interface IUserService

@@ -15,6 +15,7 @@ namespace PrismUnityApp1.ViewModels
     public class LoginPageViewModel : BindableBase
     {
         public DelegateCommand LoginFacebookCommand { get; set; }
+        public DelegateCommand LoginGoogleCommand { get; set; }
         private ILoginService _loginService;
         private INavigationService _navigationService;
         private IUnityContainer _container;
@@ -24,6 +25,7 @@ namespace PrismUnityApp1.ViewModels
             _navigationService = navigationService;
             _container = container;
             LoginFacebookCommand = new DelegateCommand(async () => await LoginFacebookAsync());
+            LoginGoogleCommand = new DelegateCommand(async () => await LoginGoogleAsync());
         }
 
         public async Task LoginFacebookAsync()
@@ -35,6 +37,17 @@ namespace PrismUnityApp1.ViewModels
                 _container.RegisterInstance(typeof(FacebookUser), fbUser, new ContainerControlledLifetimeManager());
                 await _navigationService.NavigateAsync("PrismMasterDetailPage/PrismNavigationPage/UserPage");
             }   
+        }
+
+        public async Task LoginGoogleAsync()
+        {
+            var user = await _loginService.LoginGoogleAsync();
+            FacebookUser fbUser = (FacebookUser)user;
+            if (fbUser != null)
+            {
+                _container.RegisterInstance(typeof(FacebookUser), fbUser, new ContainerControlledLifetimeManager());
+                await _navigationService.NavigateAsync("PrismMasterDetailPage/PrismNavigationPage/UserPage");
+            }
         }
     }
 }

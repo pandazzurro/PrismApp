@@ -8,8 +8,9 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Default">
             <StackLayout>
-                <Button Text="MainPage" Command="{Binding NavigateCommand}" CommandParameter="PrismNavigationPage/MainPage" />
-                <Button Text="Seconda Pagina" Command="{Binding NavigateCommand}" CommandParameter="PrismNavigationPage/SecondPage" />
+              <Button Text="MainPage" Command="{Binding NavigateCommand}" CommandParameter="PrismNavigationPage/MainPage" />
+              <Button Text="Seconda Pagina" Command="{Binding NavigateCommand}" CommandParameter="PrismNavigationPage/SecondPage" />
+              <Button Text="Utente" Command="{Binding NavigateCommand}" CommandParameter="PrismNavigationPage/UserPage" />
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>      

@@ -5,6 +5,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismUnityApp1.Views.LoginPage">
     <StackLayout>
-        <Button Text="Facebook Login" Command="{Binding LoginFacebookCommand}"></Button>
+      <Button Text="Facebook Login" Command="{Binding LoginFacebookCommand}"></Button>
+      <Button Text="Google Login" Command="{Binding LoginGoogleCommand}"></Button>
     </StackLayout>
 </ContentPage>

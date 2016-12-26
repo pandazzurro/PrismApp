@@ -3,6 +3,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using PrismUnityApp1.Entity;
 using PrismUnityApp1.Services;
 using System.Threading.Tasks;
+using System;
 
 namespace PrismUnityApp1.Droid.Service
 {
@@ -25,5 +26,18 @@ namespace PrismUnityApp1.Droid.Service
             var facebookData = await _userService.GetDataAsync(user, MobileServiceAuthenticationProvider.Facebook);
             return facebookData;
         }
+
+        public async Task<object> LoginGoogleAsync()
+        {
+            MobileServiceUser user = await _client.LoginAsync(_context, MobileServiceAuthenticationProvider.Google);
+            var googleData = await _userService.GetDataAsync(user, MobileServiceAuthenticationProvider.Google);
+            return googleData;
+        }
+
+        public async Task LogoutAsync()
+        {
+            if(_client.CurrentUser != null)
+                await _client.LogoutAsync();
+        }        
     }
 }

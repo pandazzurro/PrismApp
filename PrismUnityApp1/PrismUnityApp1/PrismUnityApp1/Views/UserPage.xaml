@@ -6,6 +6,7 @@
     <Label Text="{Binding Username}" VerticalOptions="Center" HorizontalOptions="Center" />
     <Label Text="{Binding DataNascita}" VerticalOptions="Center" HorizontalOptions="Center" />
     <Label Text="{Binding Email}" VerticalOptions="Center" HorizontalOptions="Center" />
-    <Image Source="{Binding FotoProfilo}" Aspect="AspectFill"  WidthRequest="100" HeightRequest="100" VerticalOptions="Center" HorizontalOptions="Center"/>    
+    <Image Source="{Binding FotoProfilo}" Aspect="AspectFill"  WidthRequest="100" HeightRequest="100" VerticalOptions="Center" HorizontalOptions="Center"/>
+    <Button Text="Logout" Command="{Binding LogoutCommand}"></Button>
   </StackLayout>
 </ContentPage>

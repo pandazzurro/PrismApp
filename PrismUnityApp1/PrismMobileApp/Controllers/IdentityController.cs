@@ -13,6 +13,7 @@ using Microsoft.Azure.Mobile.Server.Config;
 using Facebook;
 using PrismUnityApp1.Entity;
 using Newtonsoft.Json;
+using System.Security.Claims;
 
 namespace PrismMobileApp.Controllers
 {
@@ -28,11 +29,11 @@ namespace PrismMobileApp.Controllers
             switch (provider.ToLowerInvariant())
             {
                 case "facebook":
-                    var creds = await User.GetAppServiceIdentityAsync<FacebookCredentials>(Request);
-                    return await FacebookDataAsync(creds);                    
-                //case "google":
-                //    creds = await User.GetAppServiceIdentityAsync<GoogleCredentials>(Request);
-                //    break;
+                    var credsFb = await User.GetAppServiceIdentityAsync<FacebookCredentials>(Request);
+                    return await FacebookDataAsync(credsFb);                    
+                case "google":
+                    var credsG = await User.GetAppServiceIdentityAsync<GoogleCredentials>(Request);
+                    return await GoogleDataAsync(credsG);
                 //case "twitter":
                 //    creds = await User.GetAppServiceIdentityAsync<TwitterCredentials>(Request);
                 //    break;
@@ -69,6 +70,18 @@ namespace PrismMobileApp.Controllers
                         
             fbInfo.profile_image = await respImage.Content.ReadAsByteArrayAsync();
             return fbInfo;
+        }
+
+        private async Task<FacebookUser> GoogleDataAsync(GoogleCredentials credential)
+        {
+            var user = new FacebookUser();
+            user.name = credential.UserClaims.Where(x => x.Type == "name").FirstOrDefault().Value;
+            user.email = credential.UserClaims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault().Value;
+            user.id = credential.UserClaims.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
+            var urlPicture = credential.UserClaims.Where(x => x.Type == "picture").FirstOrDefault().Value;
+            HttpClient client = new HttpClient();
+            user.profile_image = await client.GetByteArrayAsync(urlPicture);
+            return user;            
         }
     }
 }
