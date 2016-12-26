@@ -10,6 +10,7 @@
             <StackLayout>
               <Button Text="MainPage" Command="{Binding NavigateCommand}" CommandParameter="PrismNavigationPage/MainPage" />
               <Button Text="Seconda Pagina" Command="{Binding NavigateCommand}" CommandParameter="PrismNavigationPage/SecondPage" />
+              <Button Text="Todo" Command="{Binding NavigateCommand}" CommandParameter="PrismNavigationPage/TodoItemListPage" />
               <Button Text="Utente" Command="{Binding NavigateCommand}" CommandParameter="PrismNavigationPage/UserPage" />
             </StackLayout>
         </ContentPage>
