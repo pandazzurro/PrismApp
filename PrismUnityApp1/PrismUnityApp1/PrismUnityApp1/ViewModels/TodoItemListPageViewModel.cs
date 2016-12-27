@@ -12,7 +12,12 @@ namespace PrismUnityApp1.ViewModels
     public class TodoItemListPageViewModel : BindableBase
     {
         private ITodoItemService _todoService;
-        public ObservableCollection<TodoItem> Todos { get; set; }
+        private ObservableCollection<TodoItem> _todos;
+        public ObservableCollection<TodoItem> Todos
+        {
+            get { return _todos; }
+            set { SetProperty(ref _todos, value); }
+        }
         private string _todoName;
         public string TodoName
         {
@@ -39,11 +44,14 @@ namespace PrismUnityApp1.ViewModels
         public async void UpdateAsync()
         {
             await _todoService.UpdateTodo(SelectedItem);
+            Todos.Remove(SelectedItem);
+            Todos.Add(SelectedItem);            
         }
 
         public async void DeleteAsync()
         {
             await _todoService.DeleteTodo(SelectedItem);
+            Todos.Remove(SelectedItem);
         }
 
         public async void InsertAsync()
@@ -55,6 +63,8 @@ namespace PrismUnityApp1.ViewModels
                 Complete = false
             };
             await _todoService.InsertTodo(newItem);
+            Todos.Add(newItem);
         }
+        
     }
 }

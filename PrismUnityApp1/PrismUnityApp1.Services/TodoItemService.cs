@@ -51,14 +51,7 @@ namespace PrismUnityApp1.Services
 
         public async Task InsertTodo(TodoItem item)
         {
-            try
-            {
-                await _table.InsertAsync(item);
-            }
-            catch(Exception ex)
-            {
-                var e = ex;
-            }
+            await _table.InsertAsync(item);
         }
 
         public async Task UpdateTodo(TodoItem item)
@@ -67,11 +60,15 @@ namespace PrismUnityApp1.Services
         }
     }
 
-    public class TodoItem 
+    public class TodoItem
     {
         public string Id { get; set; }
         public string Text { get; set; }
         public bool Complete { get; set; }
+        //public DateTimeOffset? CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+        //public bool Deleted { get; set; } = false;
+        //public DateTimeOffset? UpdatedAt { get; set; }
+        //public byte[] Version { get; set; }
     }
 
     public interface ITodoItemService

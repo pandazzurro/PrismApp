@@ -29,7 +29,7 @@ namespace PrismUnityApp1
             Container.RegisterTypeForNavigation<TodoItemListPage>();
             Container.RegisterTypeForNavigation<UserPage>();
 
-            var mobileClient = new MobileServiceClient("http://prismmobileapp.azurewebsites.net/");
+            var mobileClient = new MobileServiceClient("https://prismmobileapp.azurewebsites.net/");
             Container.RegisterInstance<IMobileServiceClient>(mobileClient);
             Container.RegisterType<IUserService, UserService>();
             Container.RegisterType<ITodoItemService, TodoItemService>();
